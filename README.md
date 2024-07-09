@@ -8,6 +8,8 @@ Bem-vindo ao repositório da matéria Computação Evolucionária! Aqui você en
 
 ## Trabalho 1
 
+### Fast Non-Dominated Sort
+        O algoritmo de Fast Non-Dominated Sort é um componente essencial nos algoritmos de otimização multiobjetivo, como o NSGA-II (Non-dominated Sorting Genetic Algorithm II). Ele organiza uma população de soluções em várias frentes de Pareto, onde cada frente representa um nível de dominância.
 
 ## Trabalho 2
 
