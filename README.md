@@ -1,29 +1,16 @@
-# Arduino Hobby - Teste de Componentes
+# Trabalhos de Computação Evolucionária
 
-Bem-vindo ao repositório Arduino Hobby! Aqui você encontrará projetos relacionados a testes de componentes como sensores de toque e sensores de presença usando Arduino.
+Bem-vindo ao repositório da matéria Computação Evolucionária! Aqui você encontrará projetos realizados na matéria.
 
 ## Índice
-- [Descrição](#descrição)
-- [Navegação por Pastas](#navegação-por-pastas)
-- [Links Úteis](#links-úteis)
-- [Contato](#contato)
+- [Trabalho 1](#TP1)
+- [Trabalho 2](#TP2)
 
-## Descrição
+## Trabalho 1
 
-Este projeto contém exemplos de código e documentação para testar diferentes componentes de hardware com Arduino, incluindo sensores de toque e de presença. Cada exemplo inclui código e explicações detalhadas sobre o funcionamento dos componentes.
 
-## Navegação por Pastas
+## Trabalho 2
 
-### Testes de Componentes
-
-- [Sensor de Toque](TestesdeComponentes/SensorTouch)
-- [Sensor de Presença](TestesdeComponentes/sensorPresenca)
-
-## Links Úteis
-
-- [Baixar Arduino IDE](https://www.arduino.cc/en/software)
-- [Documentação do Arduino](https://www.arduino.cc/reference/en/)
-- [Repositório GitHub](https://github.com/SeuUsuario/ArduinoHobby)
 
 ## Contato
 
