@@ -5,6 +5,8 @@ Bem-vindo ao repositório da matéria Computação Evolucionária! Aqui você en
 ## Índice
 - [Trabalho 1](#TP1)
 - [Trabalho 2](#TP2)
+- [Trabalho 3](#TP3)
+- [Trabalho 4](#TP4)
 
 ## Trabalho 1
 
@@ -14,6 +16,10 @@ O algoritmo de Fast Non-Dominated Sort é um componente essencial nos algoritmos
 
 ## Trabalho 2
 A Crowding Distance é uma métrica utilizada em algoritmos de otimização multiobjetivo, como o NSGA-II, para preservar a diversidade das soluções dentro de uma população. Essa métrica ajuda a garantir que as soluções sejam distribuídas uniformemente ao longo da fronteira de Pareto.
+
+## Trabalho 3
+
+## Trabalho 4
 
 ## Contato
 
