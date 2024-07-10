@@ -28,13 +28,27 @@ public class CrowdingDistance {
                 T.get(i).d += aux; // Distância
             }
         }
+        sortCD(T);
     }
 
-    // Ordena os indivíduos de acordo com o objetivo m
+    // Ordena os indivíduos de acordo com o objetivo f1 e f2
     public void sort(List<Individuo> T, int m) {
         for (int i = 0; i < T.size(); i++) {
             for (int j = i + 1; j < T.size(); j++) {
                 if (T.get(i).getObjetivos()[m] > T.get(j).getObjetivos()[m]) {
+                    Individuo aux = T.get(i);
+                    T.set(i, T.get(j));
+                    T.set(j, aux);
+                }
+            }
+        }
+    }
+
+    // Ordena os indivíduos de acordo com a distância de crowding
+    public void sortCD(List<Individuo> T) {
+        for (int i = 0; i < T.size(); i++) {
+            for (int j = i + 1; j < T.size(); j++) {
+                if (T.get(i).d < T.get(j).d) {
                     Individuo aux = T.get(i);
                     T.set(i, T.get(j));
                     T.set(j, aux);
