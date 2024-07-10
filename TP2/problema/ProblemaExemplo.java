@@ -4,6 +4,7 @@ public class ProblemaExemplo extends Problema{
 
     @Override
     public double[] avaliar(double[] vars) {
+        // Define os objetivos com base nas variáveis de decisão
         if(vars[0] == 0){
             return new double[]{1,5};
         }else if(vars[0] == 1){
@@ -30,7 +31,7 @@ public class ProblemaExemplo extends Problema{
 
     @Override
     public int getNvars() {
-        return 1;
+        return 1; // Número de variáveis de decisão
     }
 
 }

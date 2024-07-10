@@ -5,42 +5,42 @@ import java.util.List;
 import individuo.Individuo;
 import problema.ProblemaExemplo;
 
-
 public class FNDS {
 
-    public List<List<Individuo>> executar(List<Individuo> insList){
+    // Executa o algoritmo Fast Non-Dominated Sort
+    public List<List<Individuo>> executar(List<Individuo> insList) {
         List<Ponto> P = new ArrayList<Ponto>(insList.size());
         List<Ponto> front1 = new ArrayList<Ponto>();
         List<List<Ponto>> fronts = new ArrayList<List<Ponto>>();
 
-        for(Individuo ind : insList){
+        for (Individuo ind : insList) {
             P.add(new Ponto(ind));
         }
 
         /*
          * ========================================================================
-         * PARTE 1
+         * PARTE 1 - Identificação e formação da primeira frente de Pareto
          * ========================================================================
          */
-        for(Ponto p : P){
-            p.S = new ArrayList<Ponto>(); /*dominados*/
-            p.n = 0;
-            for(Ponto q : P){
-                if(domina(p, q)){
-                    p.S.add(q);
-                }else if(domina(q, p)){
-                    p.n++;
+        for (Ponto p : P) {
+            p.S = new ArrayList<Ponto>(); // Lista de indivíduos dominados
+            p.n = 0; // Contagem de dominância
+            for (Ponto q : P) {
+                if (domina(p, q)) {
+                    p.S.add(q); // p domina q
+                } else if (domina(q, p)) {
+                    p.n++; // q domina p
                 }
             }
-            if(p.n == 0){
+            if (p.n == 0) {
                 p.rank = 0;
-                front1.add(p);
+                front1.add(p); // Adiciona p à primeira frente
             }
         }
 
-         /*
+        /*
          * ========================================================================
-         * PARTE 2
+         * PARTE 2 - Identificação e formação das demais frentes de Pareto
          * ========================================================================
          */
         fronts.add(front1);
@@ -54,7 +54,7 @@ public class FNDS {
                     q.n--;
                     if (q.n == 0) {
                         q.rank = i + 1;
-                        Q.add(q);
+                        Q.add(q); // Adiciona q à próxima frente
                     }
                 }
             }
@@ -63,6 +63,7 @@ public class FNDS {
             Fi = Q;
         }
 
+        // Converte as frentes de pontos em frentes de indivíduos
         List<List<Individuo>> frontsInd = new ArrayList<List<Individuo>>();
         for (List<Ponto> front : fronts) {
             List<Individuo> frontInd = new ArrayList<Individuo>();
@@ -75,21 +76,21 @@ public class FNDS {
         return frontsInd;
     }
 
-
-    public boolean domina(Ponto p, Ponto q){
+    // Verifica se p domina q
+    public boolean domina(Ponto p, Ponto q) {
         boolean flag = true;
 
         double[] obj1 = p.objetivos;
         double[] obj2 = q.objetivos;
 
-        for(int i = 0; i < obj1.length; i++){
-            if(obj2[i] < obj1[i]){
+        for (int i = 0; i < obj1.length; i++) {
+            if (obj2[i] < obj1[i]) {
                 return false;
             }
         }
         flag = false;
-        for(int i = 0; i < obj1.length; i++){
-            if(obj1[i] < obj2[i]){
+        for (int i = 0; i < obj1.length; i++) {
+            if (obj1[i] < obj2[i]) {
                 return true;
             }
         }
@@ -107,14 +108,12 @@ public class FNDS {
 
         FNDS fnds = new FNDS();
         List<List<Individuo>> fronts = fnds.executar(pop);
-        System.out.println("Fonts: ");
+        System.out.println("Frentes: ");
         for (int i = 0; i < fronts.size(); i++) {
-            System.out.println("Front: " + (i+1)+ ":");
+            System.out.println("Frente: " + (i + 1) + ":");
             for (Individuo ind : fronts.get(i)) {
                 System.out.println(ind);
             }
         }
-        
     }
-    
 }

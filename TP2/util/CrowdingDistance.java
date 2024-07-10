@@ -8,6 +8,7 @@ import problema.ProblemaExemplo;
 
 public class CrowdingDistance {
 
+    // Avalia a distância de crowding para cada indivíduo em uma lista
     public void avaliar(List<Individuo> T) {
         int t = T.size();
         for (Individuo ind : T) {
@@ -17,23 +18,22 @@ public class CrowdingDistance {
         Individuo ind0 = T.get(0);
         
         for (int o = 0; o < ind0.getObjetivos().length; o++) {
-            sort(T, o); // ordena os indivíduos de acordo com o objetivo o
-            T.get(0).d = Double.POSITIVE_INFINITY; // extremos
-            T.get(t - 1).d = Double.POSITIVE_INFINITY; // extremos
+            sort(T, o); // Ordena os indivíduos de acordo com o objetivo o
+            T.get(0).d = Double.POSITIVE_INFINITY; // Extremos
+            T.get(t - 1).d = Double.POSITIVE_INFINITY; // Extremos
 
-            // calcula a distância de cada indivíduo
+            // Calcula a distância de cada indivíduo
             for (int i = 1; i < t - 1; i++) {
                 double aux = ((T.get(i + 1).getObjetivos()[o] - T.get(i - 1).getObjetivos()[o]) / (T.get(t - 1).getObjetivos()[o] - T.get(0).getObjetivos()[o]));
-                T.get(i).d += aux; // distância
+                T.get(i).d += aux; // Distância
             }
         }
     }
 
+    // Ordena os indivíduos de acordo com o objetivo m
     public void sort(List<Individuo> T, int m) {
-        // ordena os indivíduos de acordo com o objetivo m
         for (int i = 0; i < T.size(); i++) {
             for (int j = i + 1; j < T.size(); j++) {
-                // se o indivíduo i domina o indivíduo j
                 if (T.get(i).getObjetivos()[m] > T.get(j).getObjetivos()[m]) {
                     Individuo aux = T.get(i);
                     T.set(i, T.get(j));
@@ -57,6 +57,5 @@ public class CrowdingDistance {
         for (Individuo ind : fronts) {
             System.out.println(ind.d);
         }
-
     }
 }
