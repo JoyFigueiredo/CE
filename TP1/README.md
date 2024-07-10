@@ -7,9 +7,9 @@ O Fast Non-Dominated Sort (FNDS) é um algoritmo essencial em otimização multi
 - [Parte I](#Parte-I)
 - [Parte II](#Parte-II)
 - [Descrição](#TP1)
-- [Descrição](#TP1)
+- [Contato](#contato)
 
-## Trabalho 1
+## Descrição
 
 
 ## Contato
