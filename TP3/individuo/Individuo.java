@@ -21,7 +21,7 @@ public class Individuo {
 
     // Construtor que recebe um problema e as variáveis de decisão
     public Individuo(Problema problema, double[] vars) {
-        this(problema, vars, new CrossOverBLXAlfa(0.1), new MutationNone())
+        this(problema, vars, new CrossOverBLXAlfa(0.1), new MutationNone());
     }
 
     public Individuo(Problema problema, double[] vars, CrossOver crossOver, Mutation mutation) {
@@ -48,12 +48,21 @@ public class Individuo {
     public List<Individuo> recombinar(Individuo p2) {
         List<Individuo> filhos = new ArrayList<Individuo>(2);
 
-        double[] varsP1 = this.vars;
-        double[] varsP2 = p2.vars;
-
-        double[][] filhosMat = crossOver.getOffSpring(this.vars, p2.vars, new double[] {-10,-10}, new double[] {10,10});
+        //retorna a matriz de filhos. Primeira linha é o primeiro filho e a segunda linha é o segundo filho
+        //-50 a 50
+        double[][] filhosMat = crossOver.getOffSpring(this.vars, p2.vars, new double[] {-50,-50}, new double[] {50,50});
         
+        Individuo f1 = new Individuo(this.problema, filhosMat[0]); // Cria filho com problema do pai
+        Individuo f2 = new Individuo(this.problema, filhosMat[1]); // Cria filho com problema do pai
+        filhos.add(f1);
+        filhos.add(f2);
+
         return filhos;
+    }
+
+    // Realiza a mutação do indivíduo
+    public void mutar() {
+        double[] varsMut = mutation.getMutate(this.vars, new double[] {-50,-50}, new double[] {50,50});
     }
 
     // Representação textual do indivíduo

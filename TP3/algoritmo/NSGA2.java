@@ -7,8 +7,6 @@ import java.util.Random;
 import individuo.Individuo;
 import individuo.IndividuoFactory;
 import individuo.IndividuoShafferFactory;
-import problema.Problema;
-import problema.ProblemaShaffer;
 
 public class NSGA2 {
 
@@ -18,9 +16,10 @@ public class NSGA2 {
             pop.add(individuoFactory.getIndividuo());
         }
 
-        int e = 1;
+        int e = 1; // Contador de épocas
 
         while (e <= qtdEpocas) {
+            
             List<Individuo> q = new ArrayList<Individuo>(nPop);
             makeOffSpring(q,pop);
         }
