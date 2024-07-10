@@ -1,4 +1,6 @@
-# Trabalhos 1
+# Trabalho 1
+Este código é um exemplo didático para ilustrar como funciona o algoritmo Fast Non-Dominated Sort e como ele pode ser implementado em Java.
+
 O Fast Non-Dominated Sort (FNDS) é um algoritmo essencial em otimização multiobjetivo, especialmente em algoritmos evolutivos como o NSGA-II (Non-dominated Sorting Genetic Algorithm II). Ele organiza uma população de soluções em diferentes frentes de Pareto, permitindo uma seleção eficiente das melhores soluções em termos de dominância.
 
 
@@ -6,6 +8,7 @@ O Fast Non-Dominated Sort (FNDS) é um algoritmo essencial em otimização multi
 - [Descrição](#Descrição)
 - [Parte I](#Parte-I)
 - [Parte II](#Parte-II)
+- [Descrição das classes](#Descrição-das-classes)
 - [Contato](#contato)
 
 ## Descrição
@@ -35,6 +38,24 @@ As frentes subsequentes (F2, F3, etc.) são formadas iterativamente a partir da 
 - Remoção da Primeira Frente: Remova as soluções da primeira frente e reduza a contagem de dominância das soluções que são dominadas por elas.
 - Formação das Próximas Frentes: Soluções cuja contagem de dominância se torna zero após a remoção das soluções da frente anterior formam a próxima frente.
 - Repetição: Repita o processo até que todas as soluções sejam classificadas em frentes.
+
+## Descrição das classes 
+
+### Individuo
+- Representa um individuo na população;
+- Contém atributos para armazenar os genes, objetivos, lista de indivíduos dominados, número de soluções que dominam o indivíduo (n) e o ranking (r). 
+
+### FNDS
+- Implementa o algoritmo FNDS.
+- O método execute recebe uma lista de indivíduos (pop) e retorna uma lista de frentes de Pareto.
+- A primeira parte do método identifica e forma a primeira frente de Pareto.
+- A segunda parte do método identifica e forma as demais frentes de Pareto.
+
+### Main
+- Demonstra a utilização do algoritmo FNDS.
+- Cria uma população de indivíduos com seus genes e objetivos.
+- Executa o algoritmo FNDS para classificar a população em frentes de Pareto.
+- Imprime as frentes de Pareto resultantes.
 
 ## Contato
 
