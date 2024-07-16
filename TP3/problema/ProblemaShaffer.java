@@ -7,9 +7,9 @@ public class ProblemaShaffer extends Problema {
     public double[] avaliar(double[] vars) {
         // Avalia os objetivos com base nas variáveis de decisão
         double[] objetivos = new double[nVars];
-        objetivos[0] = Math.pow(vars[0], 2) + Math.pow(vars[1], 2);	
-        objetivos[1] = Math.pow(vars[0], 2) + Math.pow(vars[1], 2);	
-        return null;
+        objetivos[0] = Math.pow(vars[0]-1, 2) + Math.pow(vars[1], 2);	
+        objetivos[1] = Math.pow(vars[0], 2) + Math.pow(vars[1]-1, 2);	
+        return objetivos;
     }
 
     @Override

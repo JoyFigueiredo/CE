@@ -12,6 +12,10 @@ import util.FNDS;
 
 public class NSGA2 {
 
+    //Executar o FNDS
+    private FNDS fnds = new FNDS();
+    public Random rnd = new Random();
+
     public void execute(IndividuoFactory individuoFactory, int nPop, int qtdEpocas) {
         List<Individuo> pop = new ArrayList<Individuo>(nPop);
         for (int i = 0; i < nPop; i++) {
@@ -21,24 +25,22 @@ public class NSGA2 {
         int e = 1; // Contador de épocas
 
         while (e <= qtdEpocas) {
-            
-            List<Individuo> q = new ArrayList<Individuo>(nPop);
-            //pegar os pais e filhos, recombinação
-            makeOffSpring(q,pop);
 
+            List<Individuo> q = new ArrayList<Individuo>(nPop);
             //União dos pais com os filhos R = pop U Q
-            List<Individuo> r = new ArrayList<Individuo>(nPop*2);
+            List<Individuo> r = new ArrayList<Individuo>(nPop * 2);
+            //Nova população
+            List<Individuo> popNova = new ArrayList<Individuo>(nPop);
+            //pegar os pais e filhos, recombinação
+            makeOffSpring(q, pop);
+
             r.addAll(pop);
             r.addAll(q);
 
-            //Executar o FNDS
-            FNDS fnds = new FNDS();
             //lista de fronteiras
-            List<List<Individuo>> f = fnds.executar(pop);
+            List<List<Individuo>> f = fnds.executar(r);
 
-            //Nova população
-            List<Individuo> popNova = new ArrayList<Individuo>(nPop);
-            int i = 1; // Contador de fronteiras
+            int i = 0; // Contador de fronteiras
             while (popNova.size() + f.get(i).size() <= nPop) {
                 popNova.addAll(f.get(i));
                 i++;
@@ -46,15 +48,27 @@ public class NSGA2 {
 
             //Ultima fronteira
             List<Individuo> fLast = f.get(i);
-            if(popNova.size() < nPop) {
+            if (popNova.size() < nPop) {
                 CrowdingDistance cd = new CrowdingDistance();
                 cd.avaliar(fLast);
+                
+                int popSize = popNova.size();
+                for (int j = 0; j < nPop - popSize; j++) {
+                    popNova.add(fLast.get(j));
+                }
             }
+
+            if (e % 20 == 0 || e == 1) {
+                System.out.println("Época: " + e);
+                imprimirPop(popNova);
+            }
+            pop = popNova;
+            e++;
         }
     }
 
     private void makeOffSpring(List<Individuo> q, List<Individuo> pop) {
-        Random rnd = new Random();
+        
         List<Individuo> r = new ArrayList<Individuo>(pop.size());
         r.addAll(pop);
 
@@ -67,23 +81,38 @@ public class NSGA2 {
             //Mutação de 15%
             List<Individuo> filhos = p1.recombinar(p2);
             Individuo f1 = filhos.get(0);
-            if(rnd.nextDouble() > 0.85) {
+            if (rnd.nextDouble() > 0.85) {
                 f1.mutar();
             }
             Individuo f2 = filhos.get(1);
-            if(rnd.nextDouble() > 0.85) {
+            if (rnd.nextDouble() > 0.85) {
                 f2.mutar();
             }
 
             q.addAll(filhos);
-            
+
         }
     }
 
+    private void imprimirPop(List<Individuo> pop) {
+        for (Individuo ind : pop) {
+            System.out.print("(");
+            double[] obj = ind.getObjetivos();
+            for (int j = 0; j < obj.length; j++) {
+                if (j == obj.length - 1) {
+                    System.out.print(String.format("%f", obj[j]) + ")");
+                } else {
+                    System.out.print(String.format("%f", obj[j]) + ";");
+                }
+            }
+        }
+        System.out.println();
+    }
+
     public static void main(String[] args) {
-
         IndividuoFactory factory = new IndividuoShafferFactory();
-
+        NSGA2 nsga2 = new NSGA2();
+        nsga2.execute(factory, 20, 1000);
     }
 
 }

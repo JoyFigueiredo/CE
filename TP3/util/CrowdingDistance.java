@@ -14,9 +14,9 @@ public class CrowdingDistance {
         for (Individuo ind : T) {
             ind.d = 0;
         }
-        
+
         Individuo ind0 = T.get(0);
-        
+
         for (int o = 0; o < ind0.getObjetivos().length; o++) {
             sort(T, o); // Ordena os indivíduos de acordo com o objetivo o
             T.get(0).d = Double.POSITIVE_INFINITY; // Extremos
@@ -56,20 +56,22 @@ public class CrowdingDistance {
             }
         }
     }
+    /* 
+ * 
+ public static void main(String[] args) {
+    List<Individuo> f = new ArrayList<Individuo>();
+    f.add(new Individuo(new ProblemaExemplo(), new double[]{6}));
+    f.add(new Individuo(new ProblemaExemplo(), new double[]{7}));
+    f.add(new Individuo(new ProblemaExemplo(), new double[]{8}));
+    f.add(new Individuo(new ProblemaExemplo(), new double[]{9}));
+    
+    CrowdingDistance cd = new CrowdingDistance();
+    cd.avaliar(f);
 
-    public static void main(String[] args) {
-        List<Individuo> f = new ArrayList<Individuo>();
-        f.add(new Individuo(new ProblemaExemplo(), new double[]{6}));
-        f.add(new Individuo(new ProblemaExemplo(), new double[]{7}));
-        f.add(new Individuo(new ProblemaExemplo(), new double[]{8}));
-        f.add(new Individuo(new ProblemaExemplo(), new double[]{9}));
-
-        CrowdingDistance cd = new CrowdingDistance();
-        cd.avaliar(f);
-
-        List<Individuo> fronts = f;
-        for (Individuo ind : fronts) {
-            System.out.println(ind.d);
-        }
+    List<Individuo> fronts = f;
+    for (Individuo ind : fronts) {
+        System.out.println(ind.d);
     }
+}
+     */
 }
