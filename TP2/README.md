@@ -29,26 +29,26 @@ A Crowding Distance desempenha um papel crucial na manutenção do equilíbrio e
 
 ## Descrição das classes 
 
-### Individuo
+### `Individuo`
 - Representa um indivíduo na população de soluções.
 - Armazena os valores das variáveis de decisão (vars) e dos objetivos (objetivos).
 - Mantém uma lista de indivíduos que ele domina (dominados), o número de soluções que o dominam (n), e o ranking (r). 
 
-### FNDS
+### `FNDS`
 - Implementa o algoritmo Fast Non-Dominated Sort (FNDS) para otimização multiobjetivo.
 - O método execute recebe uma lista de indivíduos e retorna uma lista de frentes de Pareto.
 - A primeira parte do algoritmo identifica e forma a primeira frente de Pareto, baseada na dominância de Pareto.
 - A segunda parte do algoritmo forma as demais frentes de Pareto, iterativamente, removendo soluções das frentes anteriores e atualizando as contagens de dominância.
 
-### CrowdingDistance
+### `CrowdingDistance`
 - Calcula a distância de crowding para cada indivíduo em uma lista de indivíduos não dominados.
 - A distância de crowding ajuda a manter a diversidade ao longo das frentes de Pareto, avaliando quão densamente os indivíduos estão distribuídos no espaço objetivo.
 
-### Ponto
+### `Ponto`
 - Representa um ponto no espaço objetivo associado a um indivíduo.
 - Mantém os objetivos do ponto, uma lista de pontos dominados, a contagem de dominância (n), e o ranking (rank).
 
-### Main
+### `Main`
 - Demonstração da utilização do algoritmo FNDS para classificar uma população em frentes de Pareto.
 - Cria uma população de indivíduos com variáveis de decisão e objetivos específicos.
 - Executa o algoritmo FNDS para gerar e imprimir as frentes de Pareto resultantes da população.
